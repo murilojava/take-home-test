@@ -4,7 +4,7 @@ const routes = express();
 const BankController = require('../controllers/bank-controller');
 const bankController = new BankController();
 
-routes.get("/healt", (req, res) => res.json("ok"));
+routes.get("/health", (req, res) => res.json("ok"));
 
 routes.get("/balance", (req, res) => {
     const result = bankController.balance(req.query);
