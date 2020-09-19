@@ -56,7 +56,7 @@ module.exports = function() {
         const {origin, amount} = body;
         
         const account = this.findAccount(origin);
-        if(!account) return {status:404};
+        if(!account) return {status:404, data:"0"};
         
         account.withdraw(amount);
         
@@ -68,7 +68,7 @@ module.exports = function() {
         const {destination, origin, amount} = body;
         
         const accountOrigin = this.findAccount(origin);
-        if(!accountOrigin) return {status:404};
+        if(!accountOrigin) return {status:404, data:"0"};
         
         const accountDestination = this.findAccount(destination) || this.createAccount(destination);
         
