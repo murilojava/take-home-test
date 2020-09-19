@@ -8,6 +8,7 @@ routes.get("/health", (req, res) => res.json("ok"));
 
 routes.get("/balance", (req, res) => {
     const result = bankController.balance(req.query);
+    console.log(result);
     return res.status(result.status).send(result.data);
 })
 

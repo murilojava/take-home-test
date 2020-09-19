@@ -1,4 +1,5 @@
 const Account = require('../model/account');
+const { param } = require('../routes/routes');
 
 module.exports = function() {
     this.accounts = [];
@@ -14,11 +15,13 @@ module.exports = function() {
     }
 
     this.balance = (params) => {
+        console.debug("balance:params", params);
         const {account_id} = params;
         const account = this.findAccount(account_id);
-        if(!account) return {status:404, data:0};
-
-        return {status:200, data:account.getBalance()}
+        if(!account) return {status:404, data:"0"};
+        console.debug("balance:account", account);
+        
+        return {status:200, data:`${account.getBalance()}`}
     }
 
     this.callEvent = (body) => {
@@ -38,7 +41,7 @@ module.exports = function() {
     }
 
     this.deposit = (body) => {
-        console.log("deposit:", body);
+        console.debug("deposit:", body);
         
         const {destination, amount} = body;
         const account =  this.findAccount(destination) || this.createAccount(destination);
@@ -49,7 +52,7 @@ module.exports = function() {
     } 
 
     this.withdraw = (body) => {
-        console.log("withdraw:", body);
+        console.debug("withdraw:", body);
         const {origin, amount} = body;
         
         const account = this.findAccount(origin);
@@ -61,7 +64,7 @@ module.exports = function() {
     }
     
     this.transfer = (body) => {
-        console.log("transfer:", body);
+        console.debug("transfer:", body);
         const {destination, origin, amount} = body;
         
         const accountOrigin = this.findAccount(origin);
