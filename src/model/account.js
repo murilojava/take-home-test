@@ -1,5 +1,5 @@
 module.exports = function (id){
-    this.id = "";
+    this.id = id;
     this.balance = 0;
 
     this.deposit = (amount) => {
